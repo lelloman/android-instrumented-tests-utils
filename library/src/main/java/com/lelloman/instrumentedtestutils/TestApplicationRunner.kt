@@ -1,3 +1,5 @@
+@file:Suppress("unused")
+
 package com.lelloman.instrumentedtestutils
 
 import android.app.Application

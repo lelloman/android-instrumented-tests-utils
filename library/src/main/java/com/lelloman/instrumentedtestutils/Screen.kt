@@ -1,3 +1,5 @@
+@file:Suppress("unused")
+
 package com.lelloman.instrumentedtestutils
 
 import android.support.annotation.IdRes
@@ -9,8 +11,8 @@ abstract class Screen {
 
     private val context = InstrumentationRegistry.getTargetContext()
 
-    protected fun viewVisible(@IdRes id: Int) = viewIsDisplayed(id)
-    protected fun viewVisible(text: String) = viewWithTextIsDisplayed(text)
+    protected fun viewVisible(@IdRes id: Int) = ViewAssertions.checkViewIsDisplayed(id)
+    protected fun viewVisible(text: String) = ViewAssertions.checkViewWithTextIsDisplayed(text)
 
     protected fun string(@StringRes id: Int): String = context.getString(id)
     protected fun string(@StringRes id: Int, vararg arg: Any): String = context.getString(id, *arg)

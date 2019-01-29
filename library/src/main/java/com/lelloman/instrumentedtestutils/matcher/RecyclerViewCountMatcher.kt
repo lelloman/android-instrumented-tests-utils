@@ -5,7 +5,6 @@ import android.support.v7.widget.RecyclerView
 import android.view.View
 import org.hamcrest.Description
 
-
 class RecyclerViewCountMatcher(private val expectedCount: Int)
     : BoundedMatcher<View, RecyclerView>(RecyclerView::class.java) {
 
