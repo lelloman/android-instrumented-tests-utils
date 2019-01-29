@@ -34,7 +34,6 @@ dependencies {
     api "com.android.support.test:runner:$test_support_version"
     api "com.android.support.test:rules:$test_support_version"
     api "org.mockito:mockito-android:$mockito_android_version"
-    api "com.github.tmurakami:dexopener:$dex_opener_version"
     api "com.android.support.test.uiautomator:uiautomator-v18:$uiautomator_version"
     api "com.android.support.test.espresso:espresso-contrib:$espresso_version"
     api "com.google.truth:truth:$truth_version"
