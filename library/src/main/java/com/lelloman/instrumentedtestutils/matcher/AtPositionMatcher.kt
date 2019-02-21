@@ -1,8 +1,8 @@
 package com.lelloman.instrumentedtestutils.matcher
 
-import android.support.test.espresso.matcher.BoundedMatcher
-import android.support.v7.widget.RecyclerView
 import android.view.View
+import androidx.recyclerview.widget.RecyclerView
+import androidx.test.espresso.matcher.BoundedMatcher
 import org.hamcrest.Description
 import org.hamcrest.Matcher
 

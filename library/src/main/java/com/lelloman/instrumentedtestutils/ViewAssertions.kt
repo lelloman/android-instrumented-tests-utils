@@ -2,20 +2,21 @@
 
 package com.lelloman.instrumentedtestutils
 
-import android.support.test.InstrumentationRegistry
-import android.support.test.espresso.Espresso
-import android.support.test.espresso.ViewInteraction
-import android.support.test.espresso.action.GeneralLocation
-import android.support.test.espresso.action.GeneralSwipeAction
-import android.support.test.espresso.action.Press
-import android.support.test.espresso.action.Swipe
-import android.support.test.espresso.action.ViewActions
-import android.support.test.espresso.assertion.ViewAssertions
-import android.support.test.espresso.contrib.RecyclerViewActions
-import android.support.test.espresso.matcher.ViewMatchers
-import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.widget.ImageView
+import androidx.recyclerview.widget.RecyclerView
+import androidx.test.espresso.Espresso
+import androidx.test.espresso.ViewInteraction
+import androidx.test.espresso.action.GeneralLocation
+import androidx.test.espresso.action.GeneralSwipeAction
+import androidx.test.espresso.action.Press
+import androidx.test.espresso.action.Swipe
+import androidx.test.espresso.action.ViewActions.click
+import androidx.test.espresso.action.ViewActions.typeText
+import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.contrib.RecyclerViewActions
+import androidx.test.espresso.matcher.ViewMatchers
+import androidx.test.platform.app.InstrumentationRegistry
 import com.lelloman.instrumentedtestutils.matcher.AtPositionMatcher
 import com.lelloman.instrumentedtestutils.matcher.RecyclerViewCountMatcher
 import com.lelloman.instrumentedtestutils.matcher.SwipeRefreshLayoutMatcher
@@ -45,7 +46,7 @@ fun checkRecyclerViewCount(count: Int, id: Int)
 fun checkViewAtPositionHasText(position: Int, text: String, id: Int) {
     viewWithId(id)
         .check(
-            ViewAssertions.matches(
+            matches(
                 AtPositionMatcher(
                     position,
                     ViewMatchers.hasDescendant(ViewMatchers.withText(text))
@@ -82,7 +83,7 @@ fun checkViewAtPositionImageViewVisibility(
     visibility: Int
 ) {
     viewWithId(recyclerViewId)
-        .check(ViewAssertions.matches(AtPositionMatcher(position, object : BaseMatcher<View>() {
+        .check(matches(AtPositionMatcher(position, object : BaseMatcher<View>() {
             override fun describeTo(description: Description?) = Unit
 
             override fun matches(item: Any?): Boolean {
@@ -120,7 +121,7 @@ fun swipeRight(id: Int) {
 
 @Deprecated(message = "Use ViewActions instead")
 fun typeInEditText(id: Int, text: String) {
-    viewWithId(id).perform(ViewActions.typeText(text))
+    viewWithId(id).perform(typeText(text))
 }
 
 @Deprecated(message = "Use ViewActions instead")
@@ -130,18 +131,18 @@ fun openOverflowMenu() {
 
 @Deprecated(message = "Use ViewActions instead")
 fun clickView(id: Int) {
-    viewWithId(id).perform(ViewActions.click())
+    viewWithId(id).perform(click())
 }
 
 @Deprecated(message = "Use ViewActions instead")
 fun clickViewWithText(text: String) {
-    viewWithText(text).perform(ViewActions.click())
+    viewWithText(text).perform(click())
 }
 
 @Deprecated(message = "Use ViewActions instead")
 fun clickOnRecyclerViewItem(position: Int, recyclerViewId: Int): ViewInteraction =
     viewWithId(recyclerViewId)
-        .perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(position, ViewActions.click()))
+        .perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(position, click()))
 
 
 object ViewAssertions {
@@ -162,7 +163,7 @@ object ViewAssertions {
     fun checkViewAtPositionHasText(position: Int, text: String, id: Int) {
         viewWithId(id)
             .check(
-                ViewAssertions.matches(
+                matches(
                     AtPositionMatcher(
                         position,
                         ViewMatchers.hasDescendant(ViewMatchers.withText(text))
@@ -194,7 +195,7 @@ object ViewAssertions {
         visibility: Int
     ) {
         viewWithId(recyclerViewId)
-            .check(ViewAssertions.matches(AtPositionMatcher(position, object : BaseMatcher<View>() {
+            .check(matches(AtPositionMatcher(position, object : BaseMatcher<View>() {
                 override fun describeTo(description: Description?) = Unit
 
                 override fun matches(item: Any?): Boolean {

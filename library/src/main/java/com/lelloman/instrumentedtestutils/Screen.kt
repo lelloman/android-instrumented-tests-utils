@@ -2,14 +2,14 @@
 
 package com.lelloman.instrumentedtestutils
 
-import android.support.annotation.IdRes
-import android.support.annotation.StringRes
-import android.support.test.InstrumentationRegistry
-
+import android.content.Context
+import androidx.annotation.IdRes
+import androidx.annotation.StringRes
+import androidx.test.core.app.ApplicationProvider
 
 abstract class Screen {
 
-    private val context = InstrumentationRegistry.getTargetContext()
+    private val context: Context = ApplicationProvider.getApplicationContext()
 
     protected fun viewVisible(@IdRes id: Int) = ViewAssertions.checkViewIsDisplayed(id)
     protected fun viewVisible(text: String) = ViewAssertions.checkViewWithTextIsDisplayed(text)

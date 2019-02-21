@@ -2,12 +2,12 @@
 
 package com.lelloman.instrumentedtestutils
 
-import android.support.test.InstrumentationRegistry
-import android.support.test.espresso.Espresso
-import android.support.test.espresso.ViewInteraction
-import android.support.test.espresso.assertion.ViewAssertions
-import android.support.test.espresso.matcher.ViewMatchers
 import android.view.View
+import androidx.test.espresso.Espresso
+import androidx.test.espresso.ViewInteraction
+import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.matcher.ViewMatchers
+import androidx.test.platform.app.InstrumentationRegistry
 import org.hamcrest.Matcher
 import org.mockito.Mockito
 import org.mockito.stubbing.OngoingStubbing
@@ -22,8 +22,7 @@ inline fun <reified T : Any> nonNullAny(): T {
     return Mockito.any(T::class.java) ?: nullAsT()
 }
 
-fun ViewInteraction.checkMatches(matcher: Matcher<View>)
-        : ViewInteraction = check(ViewAssertions.matches(matcher))
+fun ViewInteraction.checkMatches(matcher: Matcher<View>): ViewInteraction = check(matches(matcher))
 
 fun onUiThread(action: () -> Unit) = InstrumentationRegistry
     .getInstrumentation()
